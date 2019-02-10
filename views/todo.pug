@@ -1,0 +1,26 @@
+div.container
+  div.row
+    div.col.header
+      h1 Lista de tareas
+  div.row
+    div.form-group.col
+      form(action="/save" method="POST")
+        label 
+          h3 Agregar tarea
+        input(class="form-control" type="text" placeholder="Nueva tarea" name='todo-text' value=`${oldText}`)
+        input(class="form-control" type='hidden' placeholder='Nueva tarea', name='id' value=`${anid}`)
+        br 
+        input(type='submit' value='Save').btn.btn-primary
+    div.col
+      div.header
+        h3 Tareas guardadas
+      each todo in todos
+        ul.list-group
+            li.list-group-item.list-group-item-action
+                h4 #{todo.text} 
+                a(type='button' href=`/todo?id=${todo.id}`).btn.btn-warning.edit Editar
+                a(type='button' href=`/remove?id=${todo.id}`).btn.btn-danger.delete Eliminar
+
+  
+
+
