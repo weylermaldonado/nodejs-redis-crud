@@ -1,14 +1,11 @@
-
-/**
- * Module dependencies.
- */
-
 const express = require('express'),
     routes = require('./routes/routes');
 
 const app = module.exports = express.createServer();
 
 // Configuration
+// Se define el uso de la carpeta de vistas
+// y del view engine
 
 app.configure(function(){
   app.set('views', __dirname + '/views');
@@ -30,7 +27,6 @@ app.configure('production', function(){
 // Routes
 
 app.get('/', routes.todo);
-app.get('/about', routes.todo);
 app.get('/todo', routes.todo);
 app.post('/save', routes.saveTodo);
 app.get('/remove', routes.removeTodo);
