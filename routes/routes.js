@@ -2,13 +2,13 @@ const redis = require("redis"),
   client = redis.createClient();
 
 exports.todo = function(req, res){
- var anid= req.query['id'];
- var oldText="";
+ let anid= req.query['id'];
+ let oldText="";
   console.log("View id is =>"+anid);
   if(anid=="" || anid==undefined){
   anid="";
   oldText="";
-  console.log("if null callBack id is =>"+anid+" And text is =>"+oldText);	
+  	
 
   callBackExe();
   }
@@ -20,16 +20,16 @@ exports.todo = function(req, res){
   }
   
   function callBackExe(){
-  var todos = [];
+  let todos = [];
    client.hgetall("Todo1", function(err, objs) {
-    for(var k in objs) {
-      var newTodo = {
+    for(let k in objs) {
+      let newTodo = {
         text: objs[k],
 		id:k
       };
       todos.push(newTodo);
     }
-console.log("callBack id is =>"+anid+" And text is =>"+oldText);	
+	
     res.render('todo', {
       title: 'ToDo List',
       todos: todos,
@@ -44,13 +44,13 @@ console.log("callBack id is =>"+anid+" And text is =>"+oldText);
 
 
 exports.saveTodo = function(req, res) {
-  var newTodo = {};
+  let newTodo = {};
   newTodo.name = req.body['todo-text'];
-  var anid= req.body['id'];
+  let anid= req.body['id'];
   if(anid=="" || anid==undefined){
-   console.log("save / edit id is =>"+anid);
-  var d = new Date();
-  var n = d.getTime();
+  
+  let d = new Date();
+  let n = d.getTime();
   newTodo.id = n;
   }
   else{
@@ -62,7 +62,7 @@ exports.saveTodo = function(req, res) {
 };
 
 exports.removeTodo = function(req, res) {
- var anid= req.query['id'];
+ let anid= req.query['id'];
   if(anid=="" || anid==undefined){  
   res.redirect("/todo");
   }
